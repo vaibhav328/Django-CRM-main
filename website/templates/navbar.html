@@ -1,0 +1,158 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'home' %}">Walkwel</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    {% comment %} <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'add_record' %}">Add Record</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'product-category-list' %}">Product Categories</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'product-category-list' %}">Product Categories</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'product-category-list' %}">Product Categories</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'product-category-list' %}">Product Categories</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'product-category-list' %}">Product Categories</a>
+        </li> {% endcomment %}
+        {% comment %} <li><a href="#" class="ajax-link" data-url="{% url 'admin-dashboard' %}">Products</a></li>
+        <li><a href="#" class="ajax-link" data-url="{% url 'order-list' %}">Orders</a></li> {% endcomment %}
+        {% comment %} <li><a href="#" class="ajax-link" data-url="{% url 'product-category-list' %}">Product Categories</a></li> {% endcomment %}
+        {% comment %} <li><a href="#" class="ajax-link" data-url="{% url 'product-category-list' %}">Consumers</a></li>
+        <li><a href="#" class="ajax-link" data-url="{% url 'product-category-list' %}">Dealers</a></li> {% endcomment %}
+
+        {% comment %} {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'register' %}">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'home' %}">Login</a>
+        </li>        
+        {% endif %} {% endcomment %}
+        
+        
+      {% comment %} </ul>
+      
+    </div> {% endcomment %}
+  </div>
+</nav>
+
+
+<style>
+
+  .custom-width {
+    width: 200px;
+    margin: 0 auto;
+    margin-left:0px;
+
+  }
+
+
+
+  .sidenav {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 80px;
+  }
+
+  .sidenav a, .dropdown-btn {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #818181;
+    display: block;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .sidenav a:hover, .dropdown-btn:hover {
+    color: #f1f1f1;
+  }
+
+  .main {
+    margin-left: 200px;
+    font-size: 20px;
+    padding: 0px 10px;
+  }
+
+  .active {
+    background-color: green;
+    color: white;
+  }
+
+  .dropdown-container {
+    display: none;
+    background-color: #262626;
+    padding-left: 8px;
+  }
+
+  .fa-caret-down {
+    float: right;
+    padding-right: 8px;
+  }
+</style>
+</head>
+{% if user.is_authenticated %}
+
+<div class="sidenav">
+
+  {% comment %} <a class="nav-link" href="{% url 'add_record' %}">Add Record</a> {% endcomment %}
+  {% comment %} <a class="nav-link" href="{% url 'logout' %}">Logout</a> {% endcomment %}
+  <a class="nav-link" href="{% url 'product-category-list' %}">Product Categories</a>
+  <a class="nav-link" href="{% url 'product-list' %}">Products</a>
+  <a class="nav-link" href="{% url 'dealer-list' %}">Dealers</a>
+  <a class="nav-link" href="{% url 'order-list' %}">Orders</a>
+  <a class="nav-link" href="{% url 'consumer-list' %}">Consumers</a>
+ 
+  {% comment %} <button class="dropdown-btn">Dropdown
+    <i class="fa fa-caret-down"></i>
+  </button> {% endcomment %}
+  {% comment %} <div class="dropdown-container">
+    <a href="#">Link 1</a>
+    <a href="#">Link 2</a>
+    <a href="#">Link 3</a>
+  </div>
+  <a href="#contact">Search</a> {% endcomment %}
+  <div class="fixed-bottom custom-width">
+    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+  </div>
+</div>
+
+{% else %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'register' %}">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'home' %}">Login</a>
+        </li>        
+        {% endif %}
+      </ul></div></div></nav>
+

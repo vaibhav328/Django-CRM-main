@@ -1,0 +1,146 @@
+<!-- admin_panel/templates/products.html -->
+
+{% comment %} {% extends 'base.html' %} {% endcomment %}
+
+{% block title %}Products{% endblock %}
+
+{% block content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h1>Products</h1>
+    <div id="products-content">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>pid</th>
+                    <th>Category</th>
+                    <th>Dealer</th>
+                    <th>Name</th>
+                    <th>Description</th>
+        
+                    <th>Cost</th>
+                    <th>Color</th>
+                    <th>Gender</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product_record in products %}
+                    <tr>
+                        <td><a href="{% url 'update-product' pk=product_record.pk  %}">{{product_record.pid}}</a></td>
+                        <td>{{ product_record.category }}</td>
+                        <td>{{ product_record.dealer }}</td>
+                        <td>{{ product_record.name}}</td>
+                        <td>{{ product_record.description }}</td>
+                        <td>{{ product_record.cost }}</td>
+                        <td>{{ product_record.color }}</td>
+                        <td>{{ product_record.gender }}</td>
+                        <td><a href="{% url 'view-product-image' pk=product_record.pk %}" ><img src="{{product_record.product_image.url }}" alt="Profile Pic" height="50px" width="50px" /></a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+    <script>
+        function applyFilters() {
+            var selectedColor = document.getElementById("colorFilter").value;
+            var selectedDealer = document.getElementById("dealerFilter").value;
+            var selectedGender = document.getElementById("genderFilter").value;
+            var selectedCategory = document.getElementById("categoryFilter").value;
+    
+            $.ajax({
+                type: "GET",
+                url: "{% url 'filter_by_color_dealer' %}",
+                data: {
+                    color: selectedColor,
+                    dealer: selectedDealer,
+                    gender: selectedGender,
+                    category: selectedCategory
+                },
+                success: function (data) {
+                    console.log("Received data:", data);
+                    $('#products-content').html(data.data);
+                },
+                error: function (error) {
+                    console.log("Error:", error);
+                }
+            });
+        }
+    
+   
+    </script>
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+{% comment %} <!-- admin_panel/templates/admin_panel/products.html -->
+
+{% extends 'admin/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1>Products</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Gender</th>
+                    <th>Color</th>
+                    <th>Dealer</th>
+                    <th>Product Name</th>
+                    <th>Description</th>
+                    <th>Cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                    <tr>
+                        <td>{{ product.category.name }}</td>
+                        <td>{{ product.gender }}</td>
+                        <td>{{ product.color }}</td>
+                        <td>{{ product.dealer.get_full_name }}</td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.description }}</td>
+                        <td>{{ product.cost }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %} {% endcomment %}

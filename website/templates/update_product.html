@@ -1,0 +1,14 @@
+<!-- update_product.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for product in products %}
+            {{ form.as_p }}
+        {% endfor %}
+        <br/>
+        <button type="submit" class="btn btn-secondary">Update Product</button>
+    </form>
+{% endblock %}

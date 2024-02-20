@@ -1,0 +1,14 @@
+<!-- update_order.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="POST" >
+        {% csrf_token %}
+        {% for order in orders %}
+            {{ form.as_p }}
+        {% endfor %}
+        <br/>
+        <button type="submit" class="btn btn-secondary">Update Order</button>
+    </form>
+{% endblock %}

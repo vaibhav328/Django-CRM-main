@@ -1,0 +1,98 @@
+<!-- admin_panel/templates/product_categories.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Product Categories{% endblock %}
+
+{% comment %} <div class="d-flex">
+    <button class="btn btn-light" onclick="window.location.href='{% url 'add_category' %}'">Add Category</button>
+  </div> {% endcomment %}
+
+
+{% block content %}
+<style>
+    #bt{
+        padding-left:1000px;
+    }
+</style>
+
+<div class="d-flex" id='bt'>
+    <button class="btn btn-secondary" onclick="window.location.href='{% url 'add_category' %}'">Add Category</button>
+    {% comment %} <button class="btn btn-secondary" onclick="window.location.href='{% url 'update_category' %}'">update Category</button> {% endcomment %}
+  </div>
+    <h1>Product Categories</h1>
+    <div id="product-categories-content">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Category Name</th>
+                    <th>Description</th>
+                    <th>Active Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for category_rec in product_categories %}
+                    <tr>
+                        <td><a href="{% url 'update-category' pk=category_rec.pk  %}">{{ category_rec.name }}</a></td>
+                        <td>{{ category_rec.description }}</td>
+                        <td>{{ category_rec.is_active }}</td>
+                        <td>
+                            <form method="post" action="{% url 'delete-category' category_rec.name %}">
+                              {% csrf_token %}
+                              <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                          </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+    <br/><br/>
+<a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+
+{% comment %} <a href="{% url 'delete_record' customer_record.id %}" class="btn btn-danger">Delete</a> {% endcomment %}
+
+{% comment %} <a href="{% url 'update_category' category_rec.name %}" class="btn btn-secondary">Update category</a> {% endcomment %}
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+{% comment %} <!-- admin_panel/templates/admin_panel/product_categories.html -->
+
+
+
+
+{% extends 'admin/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1>Product Categories</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Category Name</th>
+                    <th>Description</th>
+                    <th>Active Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for category in product_categories %}
+                    <tr>
+                        <td>{{ category.name }}</td>
+                        <td>{{ category.description }}</td>
+                        <td>{{ category.is_active }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %} {% endcomment %}

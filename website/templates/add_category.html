@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="col-md-6 offset-md-3">
+<h1>Add Record</h1>
+<br/>
+
+<form method="POST" action="{% url 'add_category' %}">
+	{% csrf_token %}
+
+	{{ form.as_p }}
+
+<br/>
+  <button type="submit" class="btn btn-secondary">Add Category</button>
+   <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+
+</form>
+<br><br>
+<h3> add using excel file</h3>
+<form method="post" enctype="multipart/form-data" action="{%url 'simple_upload'%}">
+  {% csrf_token %}
+  <input type="file" name="myfile">
+  <button type="submit">Upload</button>
+</form>
+<br><br>
+
+
+</div>
+
+{% endblock %}

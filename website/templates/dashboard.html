@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Admin Dashboard</h2>
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Dashboard Summary</h5>
+          <ul class="list-group">
+            <li class="list-group-item">Total Orders: {{ total_orders }}</li>
+            <li class="list-group-item">Total Consumers: {{ total_consumers }}</li>
+            <li class="list-group-item">Total Categories: {{ total_categories }}</li>
+            {% comment %} <li class="list-group-item">Total Products: {{ total_products }}</li> {% endcomment %}
+            <!-- Add other summary information as needed -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% comment %} <h1>3D Plot</h1> {% endcomment %}
+  
+<html>
+<head>
+   
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+ 
+    {{ plot_html|safe }}
+</body>
+</html> 
+
+
+
+{% endblock %}
+

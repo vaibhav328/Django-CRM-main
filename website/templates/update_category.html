@@ -1,0 +1,14 @@
+<!-- update_category.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="POST" >
+        {% csrf_token %}
+        {% for category in categories %}
+            {{ form.as_p }}
+        {% endfor %}
+        <br/>
+        <button type="submit" class="btn btn-secondary">Update Category</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,50 @@
+<!-- admin_panel/templates/orders.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Orders{% endblock %}
+
+{% block content %}
+
+<style>
+    #bt{
+        padding-left:1000px;
+    }
+</style>
+
+<div class="d-flex" id='bt'>
+    <button class="btn btn-secondary" onclick="window.location.href='{% url 'add_order' %}'">Add Order</button>
+    {% comment %} <button class="btn btn-secondary" onclick="window.location.href='{% url 'update_category' %}'">update Category</button> {% endcomment %}
+  </div>
+
+
+
+    <h1>Orders</h1>
+    <div id="orders-content">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Order Id</th>
+                    <th>Product Name</th>
+                    <th>Consumer Name</th>
+                    <th>Payment type</th>
+                    <th>Order Status</th>
+                    <th>Payment Status</th>
+ 
+                </tr>
+            </thead>
+            <tbody>
+                {% for order_record in orders %}
+                    <tr>
+                        <td>{{ order_record.oid}}</td>
+                        <td>{{ order_record.product}}</a></td>
+                        <td>{{ order_record.consumer }}</td>
+                        <td>{{ order_record.payment_type }}</td>
+                        <td>{{ order_record.order_status }}</td>
+                        <td>{{ order_record.payment_status }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,92 @@
+<!-- admin_panel/templates/products.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Products{% endblock %}
+
+{% block content %}
+<style>
+    #bt{
+        padding-left:1000px;
+    }
+</style>
+
+<div class="d-flex" id='bt'>
+    <button class="btn btn-secondary" onclick="window.location.href='{% url 'add_dealer' %}'">Add Dealer</button>
+    {% comment %} <button class="btn btn-secondary" onclick="window.location.href='{% url 'update_category' %}'">update Category</button> {% endcomment %}
+  </div>
+
+
+
+    <h1>Dealers</h1>
+    <div id="products-content">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Contact</th>
+                    <th>Address</th>
+                    <th>Business NAme</th>
+                    <th>Gst Number</th>
+                    <th>Product Categories</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for dealer_record in dealers %}
+                    <tr>
+                        <td>{{ dealer_record.fname }}</td>
+                        <td>{{ dealer_record.lname }}</td>
+                        <td><a href="{% url 'update-dealer' pk=dealer_record.pk  %}">{{ dealer_record.email }}</a></td>
+                        <td>{{ dealer_record.contact }}</td>
+                        <td>{{ dealer_record.address }}</td>
+                        <td>{{ dealer_record.business_name }}</td>
+                        <td>{{ dealer_record.business_gstin }}</td>
+                        <td>{{ dealer_record.product_categories }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+
+
+
+
+{% comment %} <!-- admin_panel/templates/admin_panel/products.html -->
+
+{% extends 'admin/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1>Products</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Gender</th>
+                    <th>Color</th>
+                    <th>Dealer</th>
+                    <th>Product Name</th>
+                    <th>Description</th>
+                    <th>Cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                    <tr>
+                        <td>{{ product.category.name }}</td>
+                        <td>{{ product.gender }}</td>
+                        <td>{{ product.color }}</td>
+                        <td>{{ product.dealer.get_full_name }}</td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.description }}</td>
+                        <td>{{ product.cost }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %} {% endcomment %}

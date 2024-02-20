@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Orders{% endblock %}
+
+{% block content %}
+<h1>Consumers</h1>
+<div id="orders-content">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Contact</th>
+                <th>Address</th>
+                <th>Gender</th>
+                <th>Category</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for consumer_record in consumers %}
+                <tr>
+                    <td>{{ consumer_record.fname}}</td>
+                    <td>{{ consumer_record.lname }}</td>
+                    <td><a href="{% url 'update-consumer' pk=consumer_record.pk  %}">{{ consumer_record.email }}</a></td>
+                    <td>{{ consumer_record.contact }}</td>
+                    <td>{{ consumer_record.address }}</td>
+                    <td>{{ consumer_record.gender }}</td>
+                    <td>{{ consumer_record.product_categories }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

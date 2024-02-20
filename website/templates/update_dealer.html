@@ -1,0 +1,14 @@
+<!-- update_dealer.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="POST" >
+        {% csrf_token %}
+        {% for dealer in dealers %}
+            {{ form.as_p }}
+        {% endfor %}
+        <br/>
+        <button type="submit" class="btn btn-secondary">Update Dealer</button>
+    </form>
+{% endblock %}
